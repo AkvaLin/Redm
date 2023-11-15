@@ -11,6 +11,7 @@ namespace Controllers.Utility
         public static readonly UnityEvent OnBattleEnded = new UnityEvent();
         public static readonly UnityEvent OnPlayerDeath = new UnityEvent();
         public static readonly UnityEvent<Scene> OnNewLocationEntered = new UnityEvent<Scene>();
+        public static readonly UnityEvent OnGameStart = new UnityEvent();
 
         public static void SendOnEnemyKilled()
         {
@@ -35,6 +36,11 @@ namespace Controllers.Utility
         public static void SendOnNewLocationEntered(Scene scene)
         {
             OnNewLocationEntered.Invoke(scene);
+        }
+
+        public static void SendOnGameStart()
+        {
+            OnGameStart.Invoke();
         }
     }
 }
