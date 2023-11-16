@@ -7,15 +7,53 @@ namespace DefaultNamespace
 
         [SerializeField] private CharacterController controller;
         [SerializeField] private Transform cam;
+        [SerializeField] private Animator animator;
         [SerializeField] private float speed = 6f;
         [SerializeField] private float turnSmoothTime = 0.1f;
+        [SerializeField] private int timeUntilIdle = 10;
         private float turnSmoothVelocity;
+        private float idleTime = 0;
+        private bool isIdle = true;
 
         private void Update()
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
             Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+            
+            if (horizontal != 0 || vertical != 0)
+            {
+                animator.ResetTrigger("Pause");
+                animator.SetTrigger("Go");
+                animator.ResetTrigger("Idle");
+                isIdle = false;
+            }
+
+            if (idleTime < timeUntilIdle)
+            {
+                if (horizontal == 0 && vertical == 0)
+                {
+                    idleTime += Time.deltaTime;
+                    if (!isIdle)
+                    {
+                        animator.SetTrigger("Pause");
+                        animator.ResetTrigger("Go");
+                        animator.ResetTrigger("Idle");
+                    }
+                }
+                else
+                {
+                    idleTime = 0;
+                }
+            }
+            else
+            {
+                isIdle = true;
+                animator.ResetTrigger("Pause");
+                animator.ResetTrigger("Go");
+                animator.SetTrigger("Idle");
+                idleTime = 0;
+            }
 
             if (direction.magnitude >= 0.1f)
             {
