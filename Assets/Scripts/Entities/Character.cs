@@ -3,8 +3,10 @@ using UnityEngine;
 
 namespace Entities
 {
-    public class Character: Entity
+    public class Character : Entity
     {
         [SerializeField] private string element; // заменить string
+
+       
     }
 }
