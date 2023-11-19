@@ -1,3 +1,4 @@
+using Support;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,7 @@ namespace Controllers.Utility
     public class GlobalEventController: MonoBehaviour
     {
         public static readonly UnityEvent OnEnemyKilled = new UnityEvent();
-        public static readonly UnityEvent OnBattleStarted = new UnityEvent();
+        public static readonly UnityEvent<Song> OnBattleStarted = new UnityEvent<Song>();
         public static readonly UnityEvent OnBattleEnded = new UnityEvent();
         public static readonly UnityEvent OnPlayerDeath = new UnityEvent();
         public static readonly UnityEvent<Scene> OnNewLocationEntered = new UnityEvent<Scene>();
@@ -18,9 +19,9 @@ namespace Controllers.Utility
             OnEnemyKilled.Invoke();
         }
         
-        public static void SendOnBattleStarted()
+        public static void SendOnBattleStarted(Song song)
         {
-            OnBattleStarted.Invoke();
+            OnBattleStarted.Invoke(song);
         }
         
         public static void SendOnBattleEnded()
