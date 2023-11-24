@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading.Tasks;
 using Controllers.Utility;
 using Entities;
 using Support;
@@ -18,6 +17,8 @@ namespace Controllers.Battle.SubControllers
         private void Start()
         {
             GlobalEventController.OnBattleStarted.AddListener(StartNoteGeneration);
+            GlobalEventController.OnPlayerDeath.AddListener(Stop);
+            GlobalEventController.OnEnemyKilled.AddListener(Stop);
         }
 
         private IEnumerator CreateNotes()
@@ -42,6 +43,12 @@ namespace Controllers.Battle.SubControllers
         {
             delay = 60f / song.bpm;
             StartCoroutine(CreateNotes());
+        }
+
+        private void Stop()
+        {
+            generate = false;
+            StopCoroutine(CreateNotes());
         }
     }
 }

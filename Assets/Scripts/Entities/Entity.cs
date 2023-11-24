@@ -11,13 +11,9 @@ namespace Entities
 
         private protected bool isInFight;
 
-        public void GetDamage(int dmg)
+        public virtual void GetDamage(int dmg)
         {
             hp -= dmg;
-            if (hp <= 0)
-            {
-                // Death
-            }
         }
 
         public void DealDamage(Entity entity)

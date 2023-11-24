@@ -1,4 +1,5 @@
 using System;
+using Controllers.Utility;
 using UnityEngine;
 using DG.Tweening;
 
@@ -8,11 +9,18 @@ namespace Entities
     {
         private Transform triggerEnter = new RectTransform();
         private Transform triggerExit = new RectTransform();
-        
+
+        private void Start()
+        {
+            GlobalEventController.OnEnemyKilled.AddListener(Stop);
+            GlobalEventController.OnPlayerDeath.AddListener(Stop);
+        }
+
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag("Wall"))
             {
+                GlobalEventController.SendDealDamageToPlayer();
                 DestroyNote();
             }
         }
@@ -26,6 +34,11 @@ namespace Entities
         {
             transform.DOComplete();
             Destroy(gameObject);
+        }
+
+        public void Stop()
+        {
+            DestroyNote();
         }
     }
 }
