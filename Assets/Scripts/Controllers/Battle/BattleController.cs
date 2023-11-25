@@ -1,4 +1,6 @@
+using Controllers.Main;
 using Controllers.Utility;
+using Entities;
 using UnityEngine;
 
 namespace Controllers.Battle
@@ -14,6 +16,9 @@ namespace Controllers.Battle
             GlobalEventController.OnEnemyKilled.AddListener(OnEnemyDeath);
             GlobalEventController.DealDamageToEnemy.AddListener(DamageEnemy);
             GlobalEventController.DealDamageToPlayer.AddListener(DamagePlayer);
+            GameController gc = GameObject.FindObjectOfType<GameController>();
+            enemy = gc.GetEnemy();
+            player = gc.GetCharacter();
         }
 
         private void OnPlayerDeath()

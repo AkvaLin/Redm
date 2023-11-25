@@ -1,3 +1,4 @@
+using Entities;
 using Support;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,7 +16,7 @@ namespace Controllers.Utility
         public static readonly UnityEvent OnGameStart = new UnityEvent();
         public static readonly UnityEvent DealDamageToPlayer = new UnityEvent();
         public static readonly UnityEvent DealDamageToEnemy = new UnityEvent();
-        public static readonly UnityEvent StartBattle = new UnityEvent();
+        public static readonly UnityEvent<Enemy, Entities.Character> StartBattle = new UnityEvent<Enemy, Entities.Character>();
 
         public static void SendOnEnemyKilled()
         {
@@ -57,9 +58,14 @@ namespace Controllers.Utility
             DealDamageToEnemy.Invoke();
         }
 
-        public static void SendStartBattle()
+        public static void SendStartBattle(Enemy enemy, Entities.Character character)
         {
-            StartBattle.Invoke();
+            StartBattle.Invoke(enemy, character);
+        }
+
+        public static void SendOnTransferBattleData(Enemy enemy, Entities.Character character)
+        {
+            StartBattle.Invoke(enemy, character);
         }
     }
 }

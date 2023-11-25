@@ -1,5 +1,6 @@
 using System;
 using Controllers.Utility;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,12 +10,13 @@ namespace Entities
     {
         [SerializeField] private string element; // заменить string
         private bool isTriggered = false;
+        [CanBeNull] private Enemy enemy;
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && isTriggered)
             {
-                GlobalEventController.SendStartBattle();
+                GlobalEventController.SendStartBattle(enemy, this);
             }
         }
 
@@ -32,6 +34,7 @@ namespace Entities
             if (other.gameObject.CompareTag("Enemy"))
             {
                 isTriggered = true;
+                enemy = other.gameObject.GetComponent<Enemy>();
             }
         }
 
@@ -40,6 +43,7 @@ namespace Entities
             if (other.gameObject.CompareTag("Enemy"))
             {
                 isTriggered = false;
+                enemy = null;
             }
         }
     }

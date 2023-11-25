@@ -1,4 +1,6 @@
+using System;
 using Controllers.Utility;
+using Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +15,7 @@ namespace Controllers.Main
             GlobalEventController.StartBattle.AddListener(EnterBattleScene);
         }
 
-        private void EnterBattleScene()
+        private void EnterBattleScene(Enemy enemy, Entities.Character character)
         {
             SceneManager.LoadScene("BattleScene");
         }
