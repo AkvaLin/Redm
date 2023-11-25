@@ -1,4 +1,4 @@
-using System;
+using Controllers.Utility;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,10 +11,14 @@ namespace Entities
         [SerializeField] private Position[] locationPositions;
         
         private bool isTriggered = false;
-
-        public AudioClip GetAudioClip()
+        
+        public override void GetDamage(int dmg)
         {
-            return music;
+            base.GetDamage(dmg);
+            if (hp <= 0)
+            {
+                GlobalEventController.SendOnEnemyKilled();
+            }
         }
 
         private void Roam()

@@ -16,6 +16,8 @@ namespace Controllers.Battle.SubControllers
         private void Start()
         {
             StartCoroutine(StartBattle());
+            GlobalEventController.OnPlayerDeath.AddListener(Stop);
+            GlobalEventController.OnEnemyKilled.AddListener(Stop);
         }
 
         private IEnumerator StartBattle()
@@ -29,5 +31,11 @@ namespace Controllers.Battle.SubControllers
             source.loop = true;
             source.Play();
         }
+
+        private void Stop()
+        {
+            source.Stop();
+        }
+        
     }
 }

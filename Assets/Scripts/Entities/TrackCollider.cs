@@ -1,4 +1,4 @@
-using System;
+using Controllers.Utility;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -8,7 +8,13 @@ namespace Entities
     {
         [SerializeField] private KeyCode button;
         private bool isTriggerd = false;
-        [CanBeNull] private GameObject triggeredObject;
+        [CanBeNull] private Note triggeredObject;
+
+        private void Start()
+        {
+            GlobalEventController.OnEnemyKilled.AddListener(Stop);
+            GlobalEventController.OnPlayerDeath.AddListener(Stop);
+        }
 
         private void Update()
         {
@@ -16,13 +22,14 @@ namespace Entities
             {
                 if (isTriggerd)
                 {
-                    triggeredObject.GetComponent<Note>().DestroyNote();
+                    triggeredObject.DestroyNote();
                     triggeredObject = null;
                     isTriggerd = false;
+                    GlobalEventController.SendDealDamageToEnemy();
                 }
                 else
                 {
-                    print("Урон");
+                    GlobalEventController.SendDealDamageToPlayer();
                 }
             }
         }
@@ -30,10 +37,16 @@ namespace Entities
         private void OnTriggerEnter(Collider other)
         {
             isTriggerd = true;
-            triggeredObject = other.gameObject;
+            triggeredObject = other.gameObject.GetComponent<Note>();
         }
 
         private void OnTriggerExit(Collider other)
+        {
+            isTriggerd = false;
+            triggeredObject = null;
+        }
+
+        private void Stop()
         {
             isTriggerd = false;
             triggeredObject = null;

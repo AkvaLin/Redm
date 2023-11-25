@@ -1,4 +1,6 @@
+using System;
 using Controllers.Utility;
+using Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,11 +12,12 @@ namespace Controllers.Main
         {
             DontDestroyOnLoad(this.gameObject);
             GlobalEventController.OnGameStart.AddListener(GameStart);
+            GlobalEventController.StartBattle.AddListener(EnterBattleScene);
         }
 
-        private void EnterBattleScene()
+        private void EnterBattleScene(Enemy enemy, Entities.Character character)
         {
-            
+            SceneManager.LoadScene("BattleScene");
         }
 
         private void EnterOpenWorldScene()
