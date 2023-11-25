@@ -15,6 +15,7 @@ namespace Controllers.Utility
         public static readonly UnityEvent OnGameStart = new UnityEvent();
         public static readonly UnityEvent DealDamageToPlayer = new UnityEvent();
         public static readonly UnityEvent DealDamageToEnemy = new UnityEvent();
+        public static readonly UnityEvent StartBattle = new UnityEvent();
 
         public static void SendOnEnemyKilled()
         {
@@ -54,6 +55,11 @@ namespace Controllers.Utility
         public static void SendDealDamageToEnemy()
         {
             DealDamageToEnemy.Invoke();
+        }
+
+        public static void SendStartBattle()
+        {
+            StartBattle.Invoke();
         }
     }
 }

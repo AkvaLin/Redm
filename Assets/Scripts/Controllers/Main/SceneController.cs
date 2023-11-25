@@ -10,11 +10,12 @@ namespace Controllers.Main
         {
             DontDestroyOnLoad(this.gameObject);
             GlobalEventController.OnGameStart.AddListener(GameStart);
+            GlobalEventController.StartBattle.AddListener(EnterBattleScene);
         }
 
         private void EnterBattleScene()
         {
-            
+            SceneManager.LoadScene("BattleScene");
         }
 
         private void EnterOpenWorldScene()
