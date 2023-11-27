@@ -19,6 +19,8 @@ namespace Controllers.Battle
             GameController gc = GameObject.FindObjectOfType<GameController>();
             enemy = gc.GetEnemy();
             player = gc.GetCharacter();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private void OnPlayerDeath()

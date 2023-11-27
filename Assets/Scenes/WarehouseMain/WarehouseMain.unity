@@ -9624,6 +9624,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8969971835649028076, guid: 4e661a4b9cf2fac4dbc610ceb59e77b8, type: 3}
   m_PrefabInstance: {fileID: 516226028}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &519179857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 519179859}
+  - component: {fileID: 519179858}
+  m_Layer: 0
+  m_Name: OpenWorldController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &519179858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519179857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 716ba01e7aa142ef9eeb333f8a53c986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &519179859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519179857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 56.95407, y: 6.9105186, z: -31.428402}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &520706602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36238,7 +36282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4631355060162698361, guid: ff66e33d83deb46769c957edf9de1e53, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.3157296
+      value: 0.31572956
       objectReference: {fileID: 0}
     - target: {fileID: 4631355060162698361, guid: ff66e33d83deb46769c957edf9de1e53, type: 3}
       propertyPath: m_LocalRotation.y
@@ -36334,11 +36378,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8229855112758752518, guid: ff66e33d83deb46769c957edf9de1e53, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000002335266
+      value: -0.000000023352657
       objectReference: {fileID: 0}
     - target: {fileID: 8229855112758752518, guid: ff66e33d83deb46769c957edf9de1e53, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000068390333
+      value: 0.000000006839033
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -48794,3 +48838,4 @@ SceneRoots:
   - {fileID: 1781597234}
   - {fileID: 106992460}
   - {fileID: 601957094539204379}
+  - {fileID: 519179859}

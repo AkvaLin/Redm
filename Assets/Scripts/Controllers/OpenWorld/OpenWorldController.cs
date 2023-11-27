@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Controllers.OpenWorld
@@ -7,6 +8,12 @@ namespace Controllers.OpenWorld
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
+        }
+
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private void EnterLevel()
