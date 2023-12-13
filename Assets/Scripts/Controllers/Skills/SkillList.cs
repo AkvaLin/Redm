@@ -57,8 +57,18 @@ public class SkillList : MonoBehaviour
 
     void Toggle()
     {
-        if (isHidden) Show();
-        else Hide();
+        if (isHidden)
+        {
+            Show();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Hide();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     void OnUpdate()
