@@ -1281,13 +1281,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2251be9b639e43389e4db558954d02a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 150
-  maxHp: 150
+  hp: 50
+  maxHp: 50
   damage: 10
   speed: 10
   elements: []
   music: {fileID: 0}
   locationPositions: 
+  id: 1
 --- !u!65 &5010664656046511182
 BoxCollider:
   m_ObjectHideFlags: 0
