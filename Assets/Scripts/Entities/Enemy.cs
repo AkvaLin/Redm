@@ -9,6 +9,7 @@ namespace Entities
         [SerializeField] private string[] elements; // заменить string
         [SerializeField] private AudioClip music;
         [SerializeField] private Position[] locationPositions;
+        public int id;
         
         private bool isTriggered = false;
         

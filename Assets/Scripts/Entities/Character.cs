@@ -1,4 +1,6 @@
 using System;
+using Controllers.Main;
+using Controllers.OpenWorld;
 using Controllers.Utility;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
@@ -16,6 +18,9 @@ namespace Entities
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && isTriggered)
             {
+                GameController gc = FindObjectOfType<GameController>();
+                gc.SetPlayerPosition(transform);
+                gc.SetEnemyId(enemy.id);
                 GlobalEventController.SendStartBattle(enemy, this);
             }
         }

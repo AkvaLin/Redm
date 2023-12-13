@@ -1,6 +1,6 @@
 using Controllers.Main;
 using Controllers.Utility;
-using Entities;
+using UI;
 using UnityEngine;
 
 namespace Controllers.Battle
@@ -9,6 +9,11 @@ namespace Controllers.Battle
     {
         private Entities.Character player;
         private Entities.Enemy enemy;
+        [SerializeField] private GameObject container;
+        [SerializeField] private GameObject winMenu;
+        [SerializeField] private GameObject defeatMenu;
+        [SerializeField] private HealthBar enemyHealthBar;
+        [SerializeField] private HealthBar playerHealthBar;
 
         private void Start()
         {
@@ -19,26 +24,39 @@ namespace Controllers.Battle
             GameController gc = GameObject.FindObjectOfType<GameController>();
             enemy = gc.GetEnemy();
             player = gc.GetCharacter();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private void OnPlayerDeath()
         {
-            
+            container.SetActive(true);
+            defeatMenu.SetActive(true);
+            GameController gc = FindObjectOfType<GameController>();
+            gc.ResetPlayerPosition();
+            gc.ResetEnemyId();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         private void OnEnemyDeath()
         {
-
+            container.SetActive(true);
+            winMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         private void DamageEnemy()
-        {
-            enemy.DealDamage(player);
+        { 
+            player.DealDamage(enemy);
+            enemyHealthBar.UpdateHealth(enemy.GetFriction());
         }
 
         private void DamagePlayer()
         {
             enemy.DealDamage(player);
+            playerHealthBar.UpdateHealth(player.GetFriction());
         }
     }
 }

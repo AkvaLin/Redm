@@ -2,7 +2,6 @@ using Entities;
 using Support;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 namespace Controllers.Utility
 {
@@ -10,13 +9,12 @@ namespace Controllers.Utility
     {
         public static readonly UnityEvent OnEnemyKilled = new UnityEvent();
         public static readonly UnityEvent<Song> OnBattleStarted = new UnityEvent<Song>();
-        public static readonly UnityEvent OnBattleEnded = new UnityEvent();
         public static readonly UnityEvent OnPlayerDeath = new UnityEvent();
-        public static readonly UnityEvent<Scene> OnNewLocationEntered = new UnityEvent<Scene>();
         public static readonly UnityEvent OnGameStart = new UnityEvent();
         public static readonly UnityEvent DealDamageToPlayer = new UnityEvent();
         public static readonly UnityEvent DealDamageToEnemy = new UnityEvent();
         public static readonly UnityEvent<Enemy, Entities.Character> StartBattle = new UnityEvent<Enemy, Entities.Character>();
+        public static readonly UnityEvent RestartOpenWorld = new UnityEvent();
 
         public static void SendOnEnemyKilled()
         {
@@ -27,20 +25,10 @@ namespace Controllers.Utility
         {
             OnBattleStarted.Invoke(song);
         }
-        
-        public static void SendOnBattleEnded()
-        {
-            OnBattleEnded.Invoke();
-        }
-        
+
         public static void SendOnPlayerDeath()
         {
             OnPlayerDeath.Invoke();
-        }
-        
-        public static void SendOnNewLocationEntered(Scene scene)
-        {
-            OnNewLocationEntered.Invoke(scene);
         }
 
         public static void SendOnGameStart()
@@ -63,9 +51,9 @@ namespace Controllers.Utility
             StartBattle.Invoke(enemy, character);
         }
 
-        public static void SendOnTransferBattleData(Enemy enemy, Entities.Character character)
+        public static void SendRestartOpenWorld()
         {
-            StartBattle.Invoke(enemy, character);
+            RestartOpenWorld.Invoke();
         }
     }
 }

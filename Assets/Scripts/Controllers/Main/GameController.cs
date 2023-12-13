@@ -10,7 +10,9 @@ namespace Controllers.Main
     {
         [CanBeNull] private Enemy selectedEnemy;
         [CanBeNull] private Entities.Character character;
-        
+        private Vector3? playerPosition;
+        private int? enemyIdToDelete;
+
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
@@ -35,6 +37,37 @@ namespace Controllers.Main
         public Entities.Character GetCharacter()
         {
             return character;
+        }
+        
+        public void ResetPlayerPosition()
+        {
+            playerPosition = null;
+        }
+
+        public void SetPlayerPosition(Transform position)
+        {
+            Vector3 vector = position.position;
+            playerPosition = new Vector3(vector.x, vector.y, vector.z);
+        }
+
+        public Vector3? GetPlayerPosition()
+        {
+            return playerPosition;
+        }
+
+        public void ResetEnemyId()
+        {
+            enemyIdToDelete = null;
+        }
+        
+        public void SetEnemyId(int id)
+        {
+            enemyIdToDelete = id;
+        }
+
+        public int? GetEnemyId()
+        {
+            return enemyIdToDelete;
         }
     }
 }
