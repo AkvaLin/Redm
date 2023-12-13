@@ -23,6 +23,8 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    public int GetXP() => xp;
+
     public List<Skill> GetSkills() => skills.Values.ToList();
 
     private void AddSkill(Skill skill)
@@ -57,6 +59,11 @@ public class SkillManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void AddXP(int amt)
+    {
+        xp += amt;
     }
 
     enum ID
