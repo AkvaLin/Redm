@@ -1,5 +1,6 @@
 using Controllers.Main;
 using Controllers.Utility;
+using UI;
 using UnityEngine;
 
 namespace Controllers.Battle
@@ -11,6 +12,8 @@ namespace Controllers.Battle
         [SerializeField] private GameObject container;
         [SerializeField] private GameObject winMenu;
         [SerializeField] private GameObject defeatMenu;
+        [SerializeField] private HealthBar enemyHealthBar;
+        [SerializeField] private HealthBar playerHealthBar;
 
         private void Start()
         {
@@ -47,11 +50,13 @@ namespace Controllers.Battle
         private void DamageEnemy()
         { 
             player.DealDamage(enemy);
+            enemyHealthBar.UpdateHealth(enemy.GetFriction());
         }
 
         private void DamagePlayer()
         {
             enemy.DealDamage(player);
+            playerHealthBar.UpdateHealth(player.GetFriction());
         }
     }
 }

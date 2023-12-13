@@ -29,5 +29,10 @@ namespace Entities
                 hp = maxHp;
             }
         }
+
+        public float GetFriction()
+        {
+            return  (float)hp / (float)maxHp;
+        }
     }
 }
