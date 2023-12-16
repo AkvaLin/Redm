@@ -13,7 +13,15 @@ public class AchievementView : MonoBehaviour
     [SerializeField]
     private Slider progressSlider;
 
+    private Achievement ach;
+
     public void SetAchievement(Achievement ach)
+    {
+        this.ach = ach;
+        OnUpdate();
+    }
+
+    public void OnUpdate()
     {
         titleTMP.text = ach.title;
         descriptionTMP.text = ach.description;

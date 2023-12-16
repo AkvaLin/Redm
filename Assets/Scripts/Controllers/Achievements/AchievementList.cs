@@ -17,4 +17,12 @@ public class AchievementList : MonoBehaviour
             view.GetComponent<AchievementView>().SetAchievement(achievement);
         }
     }
+
+    public void OnUpdate()
+    {
+        foreach (var view in GetComponentsInChildren<AchievementView>())
+        {
+            view.OnUpdate();
+        }
+    }
 }

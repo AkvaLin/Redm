@@ -14,6 +14,7 @@ namespace Controllers.Main
             GlobalEventController.OnGameStart.AddListener(GameStart);
             GlobalEventController.StartBattle.AddListener(EnterBattleScene);
             GlobalEventController.RestartOpenWorld.AddListener(GameStart);
+            GlobalEventController.OnMainMenu.AddListener(MainMenu);
         }
 
         private void EnterBattleScene(Enemy enemy, Entities.Character character)
@@ -24,6 +25,11 @@ namespace Controllers.Main
         private void GameStart()
         {
             SceneManager.LoadScene("WarehouseMain");
+        }
+
+        private void MainMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
