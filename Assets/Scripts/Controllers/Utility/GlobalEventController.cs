@@ -11,6 +11,7 @@ namespace Controllers.Utility
         public static readonly UnityEvent<Song> OnBattleStarted = new UnityEvent<Song>();
         public static readonly UnityEvent OnPlayerDeath = new UnityEvent();
         public static readonly UnityEvent OnGameStart = new UnityEvent();
+        public static readonly UnityEvent OnMainMenu = new UnityEvent();
         public static readonly UnityEvent DealDamageToPlayer = new UnityEvent();
         public static readonly UnityEvent DealDamageToEnemy = new UnityEvent();
         public static readonly UnityEvent<Enemy, Entities.Character> StartBattle = new UnityEvent<Enemy, Entities.Character>();
@@ -34,6 +35,11 @@ namespace Controllers.Utility
         public static void SendOnGameStart()
         {
             OnGameStart.Invoke();
+        }
+
+        public static void SendOnMainMenu()
+        {
+            OnMainMenu.Invoke();
         }
 
         public static void SendDealDamageToPlayer()

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controllers.Utility;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -41,6 +43,27 @@ public class AchievementsManager: MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        GlobalEventController.OnEnemyKilled.AddListener(() => {
+            var list = new ArrayList()
+            {
+                ID.KILL_1, ID.KILL_5, ID.KILL_10, ID.KILL_50
+            };
+            foreach (var id in list)
+            {
+                var progress = GetAchievementOrNull((int)id).progress as BaseAchievementProgress;
+                progress.SetProgress(progress.GetProgress() + 1);
+            }
+        });
+
+        GlobalEventController.OnPlayerDeath.AddListener(() => {
+            var progress = GetAchievementOrNull((int)ID.FIRST_DEATH).progress as FlagAchievementProgress;
+            if (!progress.GetProgress())
+                progress.SetProgress(true);
+        });
+    }
+
     private void AddAchievement(Achievement ach)
     {
         if (!achievements.TryAdd(ach.id, ach))
@@ -61,13 +84,6 @@ public class AchievementsManager: MonoBehaviour
     {
         var achievementsList = new List<Achievement>
         {
-            new Achievement(
-                (int) ID.TEST_ACHIEVEMENT,
-                "Test Title",
-                "Test Description",
-                new BaseAchievementProgress(100),
-                this
-            ),
             new Achievement(
                 (int) ID.KILL_1,
                 "Первая кровь",
@@ -98,7 +114,7 @@ public class AchievementsManager: MonoBehaviour
             ),
             new Achievement(
                 (int) ID.MISS_10,
-                "Лох",
+                "MOZILLA",
                 "Промахнись 10 раз",
                 new BaseAchievementProgress(10),
                 this
